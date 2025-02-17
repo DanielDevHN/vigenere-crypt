@@ -1,0 +1,14 @@
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\bin\Debug\net8.0\EnigmaVig.exe
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\bin\Debug\net8.0\EnigmaVig.deps.json
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\bin\Debug\net8.0\EnigmaVig.runtimeconfig.json
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\bin\Debug\net8.0\EnigmaVig.dll
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\bin\Debug\net8.0\EnigmaVig.pdb
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.AssemblyInfoInputs.cache
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.AssemblyInfo.cs
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.csproj.CoreCompileInputs.cache
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.dll
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\refint\EnigmaVig.dll
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.pdb
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.genruntimeconfig.cache
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\ref\EnigmaVig.dll
