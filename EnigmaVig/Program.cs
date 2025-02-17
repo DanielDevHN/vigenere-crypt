@@ -5,90 +5,129 @@ class Program
     private const string alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
     static void Main(string[] args)
     {
-        Console.WriteLine("**********************************************************");
-        Console.WriteLine("                    EN1GM@V1G 1.0                         ");
-        Console.WriteLine("**********************************************************");
-        
-        Console.WriteLine("Ingrese la ruta del archivo de texto:");
-        string filePath = Console.ReadLine();
-        
-        if(!File.Exists(filePath))
+        while (true)
         {
-            Console.WriteLine("El archivo no existe");
-            return;
-        }
+            Console.SetWindowPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("**********************************************************");
+            Console.WriteLine("                    EN1GM@V1G 1.0                         ");
+            Console.WriteLine("**********************************************************");
 
-        Console.WriteLine("Ingrese la clave de cifrado:");
-        string clave = Console.ReadLine();
+            Console.WriteLine("\nSeleccione una opción:");
+            Console.WriteLine("1. Encriptar un archivo");
+            Console.WriteLine("2. Desencriptar un archivo");
+            Console.WriteLine("3. Salir");
+            Console.Write("Opción: ");
 
-        Console.WriteLine("Opciones");
-        Console.WriteLine("1. Cifrar mensaje");
-        Console.WriteLine("2. Descifrar mensaje");
-        Console.WriteLine("3. Salir");
-        Console.WriteLine("**********************************************************");
-        Console.WriteLine("Seleccione una opción: ");
-        int opcion = int.Parse(Console.ReadLine());
+            string option = Console.ReadLine();
 
-        string contenido = File.ReadAllText(filePath, Encoding.UTF8).ToUpper();
-        string resultado = opcion == 1 ? EncryptVigenere(contenido, clave) : DecryptVigenere(contenido, clave);
-
-        string? directory = Path.GetDirectoryName(filePath);
-        if (directory == null)
-        {
-            Console.WriteLine("Error: No se pudo obtener el directorio del archivo.");
-            return;
-        }
-        string newFilePath = Path.Combine(directory, Path.GetFileNameWithoutExtension(filePath) + "C" + Path.GetExtension(filePath));
-        File.WriteAllText(newFilePath, resultado, Encoding.UTF8);
-
-        Console.WriteLine($"Proceso completado. Archivo guardado en: {newFilePath}");
-
-    }
-
-
-    static string EncryptVigenere( string texto, string clave)
-    {
-        StringBuilder result = new StringBuilder();
-        int keyIndex = 0;
-
-        foreach (char caracter in texto)
-        {
-            int indexText = alphabet.IndexOf(caracter);
-            if(indexText >= 0)
+            switch (option)
             {
-                int indexKey = alphabet.IndexOf(clave[keyIndex % clave.Length]);
-                int newIndex = (indexText + indexKey) % alphabet.Length;
-                result.Append(alphabet[newIndex]);
-
-                keyIndex++;
-            } else
-            {
-                result.Append(caracter);
+                case "1":
+                    ProcessFile(true); // Encriptar
+                    break;
+                case "2":
+                    ProcessFile(false); // Desencriptar
+                    break;
+                case "3":
+                    Console.WriteLine("Saliendo del programa...");
+                    return;
+                default:
+                    Console.WriteLine("Opción inválida. Intente nuevamente.");
+                    Console.Beep();
+                    break;
             }
+            Console.Clear();
         }
-        return result.ToString();
+
     }
 
-    static string DecryptVigenere(string texto, string clave)
+    static void ProcessFile(bool encrypt)
     {
-        StringBuilder result = new StringBuilder();
+        string action = encrypt ? "encriptar" : "desencriptar";
+        string suffix = encrypt ? "C" : "D";
+
+        string filePath;
+        while (true)
+        {
+            Console.Write($"Ingrese la ruta del archivo a {action}: ");
+            filePath = Console.ReadLine();
+
+            if (File.Exists(filePath))
+                break;
+
+            Console.WriteLine("Error: La ruta del archivo no es válida. Intente nuevamente.");
+        }
+
+        string key;
+        while (true)
+        {
+            Console.Write("Ingrese la clave de encriptación: ");
+            key = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(key))
+                break;
+
+            Console.WriteLine("Error: La clave no puede estar vacía. Intente nuevamente.");
+        }
+
+        try
+        {
+            string inputText = File.ReadAllText(filePath);
+            Console.WriteLine($"\nTexto original:");
+            Console.WriteLine(inputText);
+
+            string outputText = VigenereCipher(inputText, key, encrypt);
+            Console.WriteLine($"\nTexto {(encrypt ? "Encriptado" : "Desencriptado")}:");
+            Console.WriteLine(outputText);
+
+            string outputFilePath = GetNewFilePath(filePath, suffix);
+            File.WriteAllText(outputFilePath, outputText);
+            Console.WriteLine($"\nArchivo {(encrypt ? "encriptado" : "desencriptado")} guardado en: {outputFilePath}");
+            Console.Beep();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error inesperado: {ex.Message}");
+        }
+
+        Console.WriteLine("\nPresione cualquier tecla para continuar...");
+        Console.ReadKey();
+    }
+
+    static string VigenereCipher(string text, string key, bool encrypt)
+    {
+        text = text.ToUpper();
+        key = key.ToUpper();
+        string result = "";
         int keyIndex = 0;
 
-        foreach (char caracter in texto)
+        foreach (char c in text)
         {
-            int indexText = alphabet.IndexOf(caracter);
-            if (indexText >= 0)
+            if (alphabet.Contains(c))
             {
-                int indexKey = alphabet.IndexOf(clave[keyIndex % clave.Length]);
-                int newIndex = (indexText - indexKey + alphabet.Length) % alphabet.Length;
-                result.Append(alphabet[newIndex]);
+                int textIndex = alphabet.IndexOf(c);
+                int keyShift = alphabet.IndexOf(key[keyIndex % key.Length]);
+                int newIndex = encrypt ? (textIndex + keyShift) % alphabet.Length
+                                       : (textIndex - keyShift + alphabet.Length) % alphabet.Length;
+
+                result += alphabet[newIndex];
                 keyIndex++;
             }
             else
             {
-                result.Append(caracter);
+                result += c;
             }
         }
-        return result.ToString();
+
+        return result;
+    }
+
+    static string GetNewFilePath(string originalPath, string suffix)
+    {
+        string directory = Path.GetDirectoryName(originalPath) ?? string.Empty;
+        string filenameWithoutExt = Path.GetFileNameWithoutExtension(originalPath);
+        string extension = Path.GetExtension(originalPath);
+        return Path.Combine(directory, filenameWithoutExt + suffix + extension);
     }
 }

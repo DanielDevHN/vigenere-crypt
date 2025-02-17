@@ -12,3 +12,4 @@ C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\Enig
 C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.pdb
 C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.genruntimeconfig.cache
 C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\ref\EnigmaVig.dll
+C:\Users\dani-\OneDrive\Escritorio\Ceutec\Seguridad Computacional\EnigmaVig\EnigmaVig\obj\Debug\net8.0\EnigmaVig.sourcelink.json
