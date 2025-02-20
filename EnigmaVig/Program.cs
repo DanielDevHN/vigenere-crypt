@@ -53,6 +53,8 @@ class Program
             Console.Write($"Ingrese la ruta del archivo a {action}: ");
             filePath = Console.ReadLine();
 
+            filePath = filePath.Replace("\"", "").Trim();
+
             if (File.Exists(filePath))
                 break;
 
@@ -62,7 +64,8 @@ class Program
         string key;
         while (true)
         {
-            Console.Write("Ingrese la clave de encriptación: ");
+            Console.Write("IMPORTANTE: la clave que utilice para encriptar debe ser la misma para desencriptar.");
+            Console.Write("\nIngrese la clave de encriptación: ");
             key = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(key))
@@ -73,14 +76,17 @@ class Program
 
         try
         {
+            // Leer el contenido del archivo
             string inputText = File.ReadAllText(filePath);
             Console.WriteLine($"\nTexto original:");
             Console.WriteLine(inputText);
 
+            // Encriptar o desencriptar el texto
             string outputText = VigenereCipher(inputText, key, encrypt);
             Console.WriteLine($"\nTexto {(encrypt ? "Encriptado" : "Desencriptado")}:");
             Console.WriteLine(outputText);
 
+            // Guardar el texto encriptado/desencriptado en un nuevo archivo
             string outputFilePath = GetNewFilePath(filePath, suffix);
             File.WriteAllText(outputFilePath, outputText);
             Console.WriteLine($"\nArchivo {(encrypt ? "encriptado" : "desencriptado")} guardado en: {outputFilePath}");
@@ -102,15 +108,18 @@ class Program
         string result = "";
         int keyIndex = 0;
 
+        // Iterar por cada caracter del texto
         foreach (char c in text)
         {
             if (alphabet.Contains(c))
             {
+                // Obtener el índice del caracter en el alfabeto
                 int textIndex = alphabet.IndexOf(c);
                 int keyShift = alphabet.IndexOf(key[keyIndex % key.Length]);
                 int newIndex = encrypt ? (textIndex + keyShift) % alphabet.Length
                                        : (textIndex - keyShift + alphabet.Length) % alphabet.Length;
 
+                // Agregar el caracter encriptado/desencriptado al resultado
                 result += alphabet[newIndex];
                 keyIndex++;
             }
@@ -125,6 +134,7 @@ class Program
 
     static string GetNewFilePath(string originalPath, string suffix)
     {
+        // Obtener el directorio, nombre del archivo sin extensión y extensión
         string directory = Path.GetDirectoryName(originalPath) ?? string.Empty;
         string filenameWithoutExt = Path.GetFileNameWithoutExtension(originalPath);
         string extension = Path.GetExtension(originalPath);

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EnigmaVig")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+198ce2543a171b8f8c9086b4d54ce741aad0b01d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb29c22688bb164a6de12638c36a0f6a050c6565")]
 [assembly: System.Reflection.AssemblyProductAttribute("EnigmaVig")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EnigmaVig")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
